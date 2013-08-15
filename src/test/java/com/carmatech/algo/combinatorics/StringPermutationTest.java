@@ -18,6 +18,15 @@ public class StringPermutationTest {
 		assertThat(permutations, equalTo(expected));
 	}
 
+	@Test
+	public void permuteStringIteratively() {
+		List<String> permutations = StringPermutation.permuteIteratively("abc");
+		List<String> expected = Arrays.asList("abc", "acb", "bac", "bca", "cab", "cba");
+		print(permutations);
+
+		assertThat(permutations, equalTo(expected));
+	}
+
 	private void print(final List<String> strings) {
 		for (final String string : strings)
 			System.out.println(string);
