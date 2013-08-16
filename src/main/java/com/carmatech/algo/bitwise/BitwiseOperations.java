@@ -1,7 +1,7 @@
 package com.carmatech.algo.bitwise;
 
 public final class BitwiseOperations {
-	private BitwiseOperations() {
+	private BitwiseOperations() { 
 		// Pure utility class, do NOT instantiate.
 	}
 
