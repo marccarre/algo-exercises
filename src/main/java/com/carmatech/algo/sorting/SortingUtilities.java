@@ -14,9 +14,6 @@ public final class SortingUtilities {
 	}
 
 	public static <T extends Comparable<T>> void swap(final T[] array, final int i, final int j) {
-		if (i == j)
-			return;
-
 		final T temp = array[i];
 		array[i] = array[j];
 		array[j] = temp;
