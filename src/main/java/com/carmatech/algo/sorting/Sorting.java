@@ -79,7 +79,7 @@ public final class Sorting {
 	private static <T extends Comparable<T>> void doSort(final T[] tempArray, final T[] array, final int lo, final int hi) {
 		if (hi <= lo)
 			return;
-		final int mid = (lo + (hi - lo)) / 2;
+		final int mid = lo + (hi - lo) / 2;
 		doSort(tempArray, array, lo, mid);
 		doSort(tempArray, array, mid + 1, hi);
 		merge(tempArray, array, lo, mid, hi);
