@@ -67,4 +67,17 @@ public final class Strings {
 		}
 		return false;
 	}
+
+	public static void reverseCStyleString(final char[] string) {
+		final int length = string.length - 1; // Ignore the last '\0' char.
+		final int mid = (length / 2);
+		for (int i = 0, j = length - 1; i < mid; ++i, --j)
+			swap(string, i, j);
+	}
+
+	private static void swap(final char[] string, final int i, final int j) {
+		final char temp = string[i];
+		string[i] = string[j];
+		string[j] = temp;
+	}
 }
