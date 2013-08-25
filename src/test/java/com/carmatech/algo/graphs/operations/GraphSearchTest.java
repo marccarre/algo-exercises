@@ -8,9 +8,9 @@ import org.junit.Test;
 
 import com.carmatech.algo.graphs.IGraph;
 import com.carmatech.algo.graphs.UndirectedGraph;
-import com.carmatech.algo.graphs.operations.UndirectedGraphSearch;
+import com.carmatech.algo.graphs.operations.GraphSearch;
 
-public class UndirectedGraphSearchTest {
+public class GraphSearchTest {
 	private static final int GRAPH_SIZE = 6;
 	final IGraph graph = new UndirectedGraph(GRAPH_SIZE);
 
@@ -27,7 +27,7 @@ public class UndirectedGraphSearchTest {
 
 	@Test
 	public void depthFirstSearch() {
-		UndirectedGraphSearch graphSearch = new UndirectedGraphSearch(graph, 0);
+		GraphSearch graphSearch = new GraphSearch(graph, 0);
 		int[] paths = graphSearch.depthFirstSearch();
 		for (int i = 0; i < GRAPH_SIZE; ++i)
 			System.out.println("Path to " + i + " is " + graphSearch.pathTo(i));
@@ -37,7 +37,7 @@ public class UndirectedGraphSearchTest {
 
 	@Test
 	public void breadthFirstSearch() {
-		UndirectedGraphSearch graphSearch = new UndirectedGraphSearch(graph, 0);
+		GraphSearch graphSearch = new GraphSearch(graph, 0);
 		int[] paths = graphSearch.breadthFirstSearch();
 		for (int i = 0; i < GRAPH_SIZE; ++i)
 			System.out.println("Path to " + i + " is " + graphSearch.pathTo(i));

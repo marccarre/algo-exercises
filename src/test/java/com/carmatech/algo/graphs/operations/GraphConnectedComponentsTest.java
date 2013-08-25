@@ -9,7 +9,7 @@ import org.junit.Test;
 import com.carmatech.algo.graphs.IGraph;
 import com.carmatech.algo.graphs.UndirectedGraph;
 
-public class UndirectedGraphConnectedComponentsTest {
+public class GraphConnectedComponentsTest {
 	private static final int GRAPH_SIZE = 13;
 	final IGraph graph = new UndirectedGraph(GRAPH_SIZE);
 
@@ -32,7 +32,7 @@ public class UndirectedGraphConnectedComponentsTest {
 
 	@Test
 	public void computeConnectedComponents() {
-		UndirectedGraphConnectedComponents cc = new UndirectedGraphConnectedComponents(graph);
+		GraphConnectedComponents cc = new GraphConnectedComponents(graph);
 		cc.computeConnectedComponents();
 
 		assertThat(cc.numConnectedComponents(), is(3));

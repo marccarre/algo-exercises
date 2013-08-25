@@ -2,14 +2,14 @@ package com.carmatech.algo.graphs.operations;
 
 import com.carmatech.algo.graphs.IGraph;
 
-public class UndirectedGraphConnectedComponents {
+public class GraphConnectedComponents {
 	private final IGraph graph;
 
 	private int numComponents;
 	private final boolean[] visited;
 	private final int[] components;
 
-	public UndirectedGraphConnectedComponents(final IGraph graph) {
+	public GraphConnectedComponents(final IGraph graph) {
 		this.graph = graph;
 		visited = new boolean[graph.numVertices()];
 		components = new int[graph.numVertices()];

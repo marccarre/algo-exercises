@@ -6,7 +6,7 @@ import java.util.Queue;
 
 import com.carmatech.algo.graphs.IGraph;
 
-public final class UndirectedGraphSearch {
+public final class GraphSearch {
 	private static final int ROOT = -1;
 	private final IGraph graph;
 	private final int rootVertice;
@@ -14,7 +14,7 @@ public final class UndirectedGraphSearch {
 	private final boolean[] visited;
 	private final int[] pathTo;
 
-	public UndirectedGraphSearch(final IGraph graph, final int rootVertice) {
+	public GraphSearch(final IGraph graph, final int rootVertice) {
 		this.graph = graph;
 		this.rootVertice = rootVertice;
 		visited = new boolean[graph.numVertices()];
