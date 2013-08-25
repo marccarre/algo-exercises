@@ -33,9 +33,13 @@ public final class GraphSearch {
 			array[i] = 0;
 	}
 
-	public int[] depthFirstSearch() {
+	private void reInitialize() {
 		initialize(visited);
 		initialize(pathTo);
+	}
+
+	public int[] depthFirstSearch() {
+		reInitialize();
 		depthFirstSearch(rootVertice, ROOT);
 		return pathTo;
 	}
@@ -54,8 +58,7 @@ public final class GraphSearch {
 	}
 
 	public int[] breadthFirstSearch() {
-		initialize(visited);
-		initialize(pathTo);
+		reInitialize();
 
 		final Queue<Integer> queue = new LinkedList<Integer>();
 		queue.add(rootVertice);
@@ -74,6 +77,7 @@ public final class GraphSearch {
 				}
 			}
 		}
+
 		return pathTo;
 	}
 
@@ -86,5 +90,15 @@ public final class GraphSearch {
 			path.push(v);
 		path.push(rootVertice);
 		return path;
+	}
+
+	public void printPaths() {
+		final int length = graph.numVertices();
+		for (int i = 0; i < length; ++i)
+			printPath(i);
+	}
+
+	public void printPath(final int v) {
+		System.out.println("Path to " + v + " is " + pathTo(v));
 	}
 }
