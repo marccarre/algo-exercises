@@ -9,6 +9,7 @@ public class DirectedGraph extends AbstractGraph implements IGraph {
 	public void addEdge(final int from, final int to) {
 		validateVertice(from);
 		validateVertice(to);
+		checkIfCyclic(from, to);
 		vertices[from].add(to);
 	}
 
@@ -46,6 +47,9 @@ public class DirectedGraph extends AbstractGraph implements IGraph {
 
 	@Override
 	public int numEdgesToSelf() {
+		if (!isCyclic)
+			return 0;
+
 		int count = 0;
 		for (int v = 0; v < numVertices; ++v)
 			count += edgesToSelf(v);

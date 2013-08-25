@@ -9,6 +9,7 @@ public class UndirectedGraph extends AbstractGraph implements IGraph {
 	public void addEdge(final int firstVertice, final int secondVertice) {
 		validateVertice(firstVertice);
 		validateVertice(secondVertice);
+		checkIfCyclic(firstVertice, secondVertice);
 		vertices[firstVertice].add(secondVertice);
 		vertices[secondVertice].add(firstVertice);
 	}
@@ -28,6 +29,9 @@ public class UndirectedGraph extends AbstractGraph implements IGraph {
 
 	@Override
 	public int numEdgesToSelf() {
+		if (!isCyclic)
+			return 0;
+
 		int count = 0;
 		for (int v = 0; v < numVertices; ++v)
 			count += edgesToSelf(v);

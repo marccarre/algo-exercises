@@ -9,6 +9,7 @@ import java.util.List;
 public abstract class AbstractGraph implements IGraph {
 	protected final int numVertices;
 	protected final List<Integer>[] vertices;
+	protected boolean isCyclic = false;
 
 	public AbstractGraph(final int numVertices) {
 		checkArgument(numVertices > 0, "Number of vertices in a graph must be strictly positive, but was [" + numVertices + "].");
@@ -33,7 +34,15 @@ public abstract class AbstractGraph implements IGraph {
 	}
 
 	@Override
+	/**
+	 * N.B. call {@code checkIfCyclic} when implementing {@code addEdge} in subclasses.
+	 */
 	public abstract void addEdge(final int firstVertice, final int secondVertice);
+
+	protected void checkIfCyclic(final int firstVertice, final int secondVertice) {
+		if (firstVertice == secondVertice)
+			isCyclic = true;
+	}
 
 	@Override
 	public List<Integer> neighbours(final int vertice) {
@@ -76,6 +85,9 @@ public abstract class AbstractGraph implements IGraph {
 	public int edgesToSelf(final int vertice) {
 		validateVertice(vertice);
 
+		if (!isCyclic)
+			return 0;
+
 		final List<Integer> neighbours = neighbours(vertice);
 		int count = 0;
 		for (final int neighbour : neighbours)
@@ -90,14 +102,16 @@ public abstract class AbstractGraph implements IGraph {
 
 	@Override
 	public boolean isCyclic() {
-		for (int v = 0; v < numVertices; ++v)
-			if (hasEdgeToSelf(v))
-				return true;
-		return false;
+		return isCyclic;
 	}
 
 	@Override
 	public boolean hasEdgeToSelf(final int vertice) {
+		validateVertice(vertice);
+
+		if (!isCyclic)
+			return false;
+
 		final List<Integer> neighbours = neighbours(vertice);
 		for (final int neighbour : neighbours)
 			if (vertice == neighbour)

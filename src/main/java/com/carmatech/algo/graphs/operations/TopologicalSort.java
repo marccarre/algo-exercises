@@ -1,5 +1,6 @@
 package com.carmatech.algo.graphs.operations;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Collections;
@@ -16,6 +17,7 @@ public class TopologicalSort {
 
 	public TopologicalSort(final DirectedGraph graph) {
 		checkNotNull(graph, "Provided directed graph must NOT be null.");
+		checkArgument(!graph.isCyclic(), "Topological sort does NOT work on cyclic directed graphs.");
 		this.graph = graph;
 
 		numVertices = graph.numVertices();
