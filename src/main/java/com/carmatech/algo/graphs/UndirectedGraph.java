@@ -33,4 +33,22 @@ public class UndirectedGraph extends AbstractGraph implements IGraph {
 			count += edgesToSelf(v);
 		return count / 2;
 	}
+
+	@Override
+	public String toString() {
+		final boolean[] visited = new boolean[numVertices];
+		final StringBuilder builder = new StringBuilder();
+		for (int v = 0; v < numVertices; v++) {
+			for (final int w : neighbours(v)) {
+				if (!visited[w]) {
+					builder.append(v);
+					builder.append(" <-> ");
+					builder.append(w);
+					builder.append("\n");
+				}
+			}
+			visited[v] = true;
+		}
+		return builder.toString();
+	}
 }
