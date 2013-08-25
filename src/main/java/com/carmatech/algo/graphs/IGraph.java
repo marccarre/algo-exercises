@@ -5,7 +5,7 @@ import java.util.List;
 public interface IGraph {
 	void addEdge(int firstVertice, int secondVertice);
 
-	List<Integer> adjacentNodes(int vertice);
+	List<Integer> neighbours(int vertice);
 
 	int numVertices();
 

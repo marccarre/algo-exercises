@@ -47,7 +47,7 @@ public final class UndirectedGraphSearch {
 		visited[vertice] = true;
 		pathTo[vertice] = previousVertice;
 
-		final List<Integer> neighbours = graph.adjacentNodes(vertice);
+		final List<Integer> neighbours = graph.neighbours(vertice);
 		for (final int neighbour : neighbours)
 			if (!visited[neighbour])
 				depthFirstSearch(neighbour, vertice);
@@ -65,7 +65,7 @@ public final class UndirectedGraphSearch {
 		while (!queue.isEmpty()) {
 			final int vertice = queue.poll();
 
-			final List<Integer> neighbours = graph.adjacentNodes(vertice);
+			final List<Integer> neighbours = graph.neighbours(vertice);
 			for (final int neighbour : neighbours) {
 				if (!visited[neighbour]) {
 					visited[neighbour] = true;

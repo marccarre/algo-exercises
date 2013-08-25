@@ -51,7 +51,7 @@ public class UndirectedGraphConnectedComponents {
 		visited[v] = true;
 		components[v] = numComponents;
 
-		for (final int neighbour : graph.adjacentNodes(v))
+		for (final int neighbour : graph.neighbours(v))
 			depthFirstSearch(neighbour);
 	}
 

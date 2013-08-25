@@ -36,7 +36,7 @@ public abstract class AbstractGraph implements IGraph {
 	public abstract void addEdge(final int firstVertice, final int secondVertice);
 
 	@Override
-	public List<Integer> adjacentNodes(final int vertice) {
+	public List<Integer> neighbours(final int vertice) {
 		validateVertice(vertice);
 		return Collections.unmodifiableList(vertices[vertice]);
 	}
@@ -76,7 +76,7 @@ public abstract class AbstractGraph implements IGraph {
 	public int edgesToSelf(final int vertice) {
 		validateVertice(vertice);
 
-		final List<Integer> neighbours = adjacentNodes(vertice);
+		final List<Integer> neighbours = neighbours(vertice);
 		int count = 0;
 		for (final int neighbour : neighbours)
 			if (neighbour == vertice)
