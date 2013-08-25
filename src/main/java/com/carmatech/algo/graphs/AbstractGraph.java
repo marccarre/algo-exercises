@@ -87,4 +87,22 @@ public abstract class AbstractGraph implements IGraph {
 
 	@Override
 	public abstract int numEdgesToSelf();
+
+	@Override
+	public boolean isCyclic() {
+		for (int v = 0; v < numVertices; ++v)
+			if (hasEdgeToSelf(v))
+				return true;
+		return false;
+	}
+
+	@Override
+	public boolean hasEdgeToSelf(final int vertice) {
+		final List<Integer> neighbours = neighbours(vertice);
+		for (final int neighbour : neighbours)
+			if (vertice == neighbour)
+				return true;
+
+		return false;
+	}
 }

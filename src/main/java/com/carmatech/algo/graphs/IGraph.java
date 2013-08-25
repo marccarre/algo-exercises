@@ -20,4 +20,8 @@ public interface IGraph {
 	int edgesToSelf(int vertice);
 
 	int numEdgesToSelf();
+
+	boolean isCyclic();
+
+	boolean hasEdgeToSelf(int vertice);
 }
