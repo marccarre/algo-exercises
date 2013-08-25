@@ -1,4 +1,4 @@
-package com.carmatech.algo.datastructures;
+package com.carmatech.algo.graphs;
 
 import java.util.List;
 

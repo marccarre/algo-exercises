@@ -1,4 +1,4 @@
-package com.carmatech.algo.datastructures;
+package com.carmatech.algo.graphs;
 
 import static com.google.common.base.Preconditions.checkArgument;
 

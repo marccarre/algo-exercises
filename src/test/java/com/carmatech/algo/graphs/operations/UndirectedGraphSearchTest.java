@@ -1,4 +1,4 @@
-package com.carmatech.algo.searching;
+package com.carmatech.algo.graphs.operations;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -6,8 +6,9 @@ import static org.hamcrest.Matchers.equalTo;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.carmatech.algo.datastructures.IGraph;
-import com.carmatech.algo.datastructures.UndirectedGraph;
+import com.carmatech.algo.graphs.IGraph;
+import com.carmatech.algo.graphs.UndirectedGraph;
+import com.carmatech.algo.graphs.operations.UndirectedGraphSearch;
 
 public class UndirectedGraphSearchTest {
 	private static final int GRAPH_SIZE = 6;

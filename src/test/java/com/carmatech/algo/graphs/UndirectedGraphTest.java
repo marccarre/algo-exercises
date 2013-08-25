@@ -1,4 +1,4 @@
-package com.carmatech.algo.datastructures;
+package com.carmatech.algo.graphs;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.closeTo;
@@ -6,6 +6,9 @@ import static org.hamcrest.Matchers.is;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.carmatech.algo.graphs.IGraph;
+import com.carmatech.algo.graphs.UndirectedGraph;
 
 public class UndirectedGraphTest {
 	private static final double TOLERANCE_ON_DOUBLES = 0.00000001;

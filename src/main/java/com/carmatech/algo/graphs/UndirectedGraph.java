@@ -1,4 +1,4 @@
-package com.carmatech.algo.datastructures;
+package com.carmatech.algo.graphs;
 
 public class UndirectedGraph extends AbstractGraph implements IGraph {
 	public UndirectedGraph(final int numVertices) {

@@ -5,7 +5,7 @@ import static org.hamcrest.Matchers.is;
 
 import org.junit.Test;
 
-public class BitwiseOperationsTest { 
+public class BitwiseOperationsTest {
 	@Test
 	public void leftShiftWithLowestBitAtZeroShouldShiftWithRightMostBitSetToZero() {
 		long l = 0xFFFF000000000000L;

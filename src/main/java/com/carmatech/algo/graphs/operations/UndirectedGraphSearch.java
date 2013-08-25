@@ -1,10 +1,10 @@
-package com.carmatech.algo.searching;
+package com.carmatech.algo.graphs.operations;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import com.carmatech.algo.datastructures.IGraph;
+import com.carmatech.algo.graphs.IGraph;
 
 public final class UndirectedGraphSearch {
 	private static final int ROOT = -1;

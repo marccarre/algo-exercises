@@ -1,4 +1,4 @@
-package com.carmatech.algo.datastructures;
+package com.carmatech.algo.trees;
 
 import java.util.LinkedList;
 import java.util.List;
