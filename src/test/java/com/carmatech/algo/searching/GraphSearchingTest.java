@@ -6,11 +6,12 @@ import static org.hamcrest.Matchers.equalTo;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.carmatech.algo.datastructures.Graph;
+import com.carmatech.algo.datastructures.IGraph;
+import com.carmatech.algo.datastructures.UndirectedGraph;
 
 public class GraphSearchingTest {
 	private static final int GRAPH_SIZE = 6;
-	final Graph graph = new Graph(GRAPH_SIZE);
+	final IGraph graph = new UndirectedGraph(GRAPH_SIZE);
 
 	@Before
 	public void setUp() {

@@ -1,29 +1,11 @@
 package com.carmatech.algo.datastructures;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-
-public class Graph {
-	private final int numVertices;
-	private final List<Integer>[] vertices;
-
-	public Graph(final int numVertices) {
-		checkArgument(numVertices > 0, "Number of vertices in a graph must be strictly positive, but was [" + numVertices + "].");
-		this.numVertices = numVertices;
-		vertices = initializeVerticesWithNoEdge(numVertices);
+public class UndirectedGraph extends AbstractGraph implements IGraph {
+	public UndirectedGraph(final int numVertices) {
+		super(numVertices);
 	}
 
-	@SuppressWarnings("unchecked")
-	private List<Integer>[] initializeVerticesWithNoEdge(final int numVertices) {
-		final List<Integer>[] vertices = (List<Integer>[]) new List<?>[numVertices];
-		for (int i = 0; i < numVertices; ++i)
-			vertices[i] = new LinkedList<Integer>();
-		return vertices;
-	}
-
+	@Override
 	public void addEdge(final int firstVertice, final int secondVertice) {
 		validateVertice(firstVertice);
 		validateVertice(secondVertice);
@@ -31,20 +13,24 @@ public class Graph {
 		vertices[secondVertice].add(firstVertice);
 	}
 
-	public List<Integer> adjacentNodes(final int vertice) {
-		validateVertice(vertice);
-		return Collections.unmodifiableList(vertices[vertice]);
+	@Override
+	public int numEdges() {
+		int count = 0;
+		for (int v = 0; v < numVertices; ++v)
+			count += vertices[v].size();
+		return count / 2;
 	}
 
-	private void validateVertice(final int vertice) {
-		checkArgument(isExistingVertice(vertice), "Vertice must be between 0 and " + (numVertices - 1) + " (included), but was [" + vertice + "].");
+	@Override
+	public double averageDegree() {
+		return 2.0 * numEdges() / numVertices();
 	}
 
-	private boolean isExistingVertice(final int vertice) {
-		return (0 <= vertice) && (vertice < numVertices);
-	}
-
-	public int numVertices() {
-		return numVertices;
+	@Override
+	public int numEdgesToSelf() {
+		int count = 0;
+		for (int v = 0; v < numVertices; ++v)
+			count += edgesToSelf(v);
+		return count / 2;
 	}
 }

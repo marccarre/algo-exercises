@@ -4,17 +4,17 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import com.carmatech.algo.datastructures.Graph;
+import com.carmatech.algo.datastructures.IGraph;
 
 public final class GraphSearch {
 	private static final int ROOT = -1;
-	private final Graph graph;
+	private final IGraph graph;
 	private final int rootVertice;
 
 	private final boolean[] visited;
 	private final int[] pathTo;
 
-	public GraphSearch(final Graph graph, final int rootVertice) {
+	public GraphSearch(final IGraph graph, final int rootVertice) {
 		this.graph = graph;
 		this.rootVertice = rootVertice;
 		visited = new boolean[graph.numVertices()];
