@@ -8,14 +8,14 @@ import java.util.Queue;
 import com.carmatech.algo.graphs.Edge;
 import com.carmatech.algo.graphs.IWeightedGraph;
 
-public class LazyPrimMinimumSpanningTree {
+public class EagerPrimMinimumSpanningTree {
 	private final IWeightedGraph<Edge> graph;
 	private final int numVertices;
 	private final List<Edge> mst = new LinkedList<Edge>();
 	private final boolean[] visited;
 	private final Queue<Edge> edges = new PriorityQueue<Edge>();
 
-	public LazyPrimMinimumSpanningTree(final IWeightedGraph<Edge> graph) {
+	public EagerPrimMinimumSpanningTree(final IWeightedGraph<Edge> graph) {
 		this.graph = graph;
 		numVertices = graph.numVertices();
 		this.visited = new boolean[numVertices];
@@ -31,27 +31,18 @@ public class LazyPrimMinimumSpanningTree {
 		visit(0);
 
 		while (!edges.isEmpty() && (mst.size() < numVertices - 1)) { // V-1 times best case, E times worst case
-			final Edge edge = edges.remove(); // O(log(E))
-			int v = edge.either();
-			int w = edge.other(v);
-
-			if (visited[v] && visited[w]) // O(1)
-				continue;
-
-			// V-1 times:
-			mst.add(edge);
-			if (!visited[v])
-				visit(v);
-			if (!visited[w])
-				visit(w);
+			// TODO:
+			return;
 		}
 	}
 
 	private void visit(final int v) {
 		visited[v] = true; // O(1)
-		for (final Edge edge : graph.neighbours(v))
-			if (!visited[edge.other(v)])
-				edges.add(edge); // O(log(E))
+		for (final Edge edge : graph.neighbours(v)) { // outDegree(v) times
+			final int w = edge.other(v);
+			if (!visited[w])
+				edges.add(edge); // O(log(V))
+		}
 	}
 
 	public List<Edge> edges() {

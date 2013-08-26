@@ -11,6 +11,7 @@ public class UndirectedWeightedGraph extends AbstractWeightedGraph<Edge> impleme
 		int v = edge.either();
 		int w = edge.other(v);
 		checkIfCyclic(v, w);
+		edges.add(edge);
 		vertices[v].add(edge);
 		vertices[w].add(edge);
 	}

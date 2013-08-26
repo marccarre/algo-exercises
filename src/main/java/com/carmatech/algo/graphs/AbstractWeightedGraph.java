@@ -9,12 +9,14 @@ import java.util.List;
 public abstract class AbstractWeightedGraph<T extends Edge> implements IWeightedGraph<T> {
 	protected final int numVertices;
 	protected final List<T>[] vertices;
+	protected final List<T> edges;
 	protected boolean isCyclic = false;
 
 	public AbstractWeightedGraph(final int numVertices) {
 		checkArgument(numVertices > 0, "Number of vertices in a graph must be strictly positive, but was [" + numVertices + "].");
 		this.numVertices = numVertices;
 		vertices = initializeVerticesWithNoEdge(numVertices);
+		edges = new LinkedList<T>();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -36,8 +38,14 @@ public abstract class AbstractWeightedGraph<T extends Edge> implements IWeighted
 	@Override
 	/**
 	 * N.B. call {@code checkIfCyclic} when implementing {@code addEdge} in subclasses.
+	 * Also add provided edges to {@code this.edges}.
 	 */
 	public abstract void addEdge(final Edge edge);
+
+	@Override
+	public List<T> allEdges() {
+		return Collections.unmodifiableList(edges);
+	}
 
 	protected void checkIfCyclic(final int firstVertice, final int secondVertice) {
 		if (firstVertice == secondVertice)

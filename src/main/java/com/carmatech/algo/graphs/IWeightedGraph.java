@@ -7,6 +7,8 @@ public interface IWeightedGraph<T extends Edge> {
 
 	List<T> neighbours(int vertice);
 
+	List<T> allEdges();
+
 	int numVertices();
 
 	int numEdges();

@@ -7,30 +7,43 @@ import java.util.Queue;
 
 import com.carmatech.algo.graphs.Edge;
 import com.carmatech.algo.graphs.IWeightedGraph;
+import com.carmatech.algo.unionfind.IUnionFind;
+import com.carmatech.algo.unionfind.QuickUnion;
 
 public class KruskalMinimumSpanningTree {
 	private final IWeightedGraph<Edge> graph;
+	private final int numVertices;
 	private final List<Edge> mst = new LinkedList<Edge>();
-	private final boolean[] visited;
 	private final Queue<Edge> edges = new PriorityQueue<Edge>();
+	private final IUnionFind unionFind;
 
 	public KruskalMinimumSpanningTree(final IWeightedGraph<Edge> graph) {
 		this.graph = graph;
-		this.visited = new boolean[graph.numVertices()];
+		numVertices = graph.numVertices();
+		this.unionFind = new QuickUnion(numVertices); // O(V)
 	}
 
+	/**
+	 * Find the minimum spanning tree in O(E.log(E)).
+	 */
 	public void findMinimumSpanningTree() {
 		mst.clear();
 		edges.clear();
 
-		// TODO
-	}
+		edges.addAll(graph.allEdges()); // O(E.log(E))
 
-	private void visit(final int v) {
-		visited[v] = true;
-		for (final Edge edge : graph.neighbours(v))
-			if (!visited[edge.other(v)])
-				edges.add(edge);
+		while (!edges.isEmpty() && (mst.size() < numVertices - 1)) { // V-1 times best case, E times worst case
+			final Edge edge = edges.remove(); // O(log(E))
+			final int v = edge.either();
+			final int w = edge.other(v);
+
+			if (unionFind.connected(v, w)) // O(1)
+				continue;
+
+			// V-1 times, thanks to above condition:
+			mst.add(edge); // O(1)
+			unionFind.union(v, w); // O(V.log(V))
+		}
 	}
 
 	public List<Edge> edges() {
