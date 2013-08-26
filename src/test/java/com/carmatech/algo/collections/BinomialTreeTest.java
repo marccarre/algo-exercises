@@ -1,4 +1,4 @@
-package com.carmatech.algo.trees;
+package com.carmatech.algo.collections;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -8,7 +8,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import com.carmatech.algo.trees.BinomialTree;
+import com.carmatech.algo.collections.BinomialTree;
 
 public class BinomialTreeTest {
 	@Rule
