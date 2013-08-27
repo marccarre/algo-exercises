@@ -2,6 +2,7 @@ package com.carmatech.algo.sorting;
 
 import static com.carmatech.algo.sorting.SortingUtilities.less;
 import static com.carmatech.algo.sorting.SortingUtilities.shuffle;
+import static com.carmatech.algo.sorting.SortingUtilities.sink;
 import static com.carmatech.algo.sorting.SortingUtilities.swap;
 
 public final class Sorting {
@@ -132,5 +133,19 @@ public final class Sorting {
 		}
 		swap(array, lo, j);
 		return j;
+	}
+
+	public static <T extends Comparable<T>> void heapSort(final T[] array) {
+		int length = array.length;
+
+		// Build heap using bottom-up method:
+		for (int k = length / 2; k >= 1; --k)
+			sink(array, k, length);
+
+		// Sort down:
+		while (length > 1) {
+			swap(array, 0, length - 1);
+			sink(array, 1, --length);
+		}
 	}
 }

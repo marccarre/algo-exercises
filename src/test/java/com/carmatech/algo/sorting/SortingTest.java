@@ -44,4 +44,10 @@ public class SortingTest {
 		Sorting.quickSort(array);
 		assertThat(isSorted(array), is(true));
 	}
+
+	@Test
+	public void heapSortShouldSortProvidedArray() {
+		Sorting.heapSort(array);
+		assertThat(isSorted(array), is(true));
+	}
 }
