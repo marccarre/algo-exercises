@@ -8,8 +8,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import com.carmatech.algo.collections.BinomialTree;
-
 public class BinomialTreeTest {
 	@Rule
 	public ExpectedException exception = ExpectedException.none();
@@ -75,5 +73,17 @@ public class BinomialTreeTest {
 	public void findLargestPathValue() {
 		BinomialTree<Integer> tree = new BinomialTree<Integer>(new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
 		assertThat(tree.largestPathValue(), is(Long.valueOf(1 + 3 + 6 + 10)));
+	}
+
+	@Test
+	public void findLargestPathValueWithoutPathConstruction() {
+		BinomialTree<Integer> tree = new BinomialTree<Integer>(new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
+		assertThat(tree.pathLargestValueWithoutPathConstruction(), is(Long.valueOf(1 + 3 + 6 + 10)));
+	}
+
+	@Test
+	public void findLargestPathValueWithoutPathConstructionNorRecursion() {
+		BinomialTree<Integer> tree = new BinomialTree<Integer>(new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
+		assertThat(tree.pathLargestValueWithoutPathConstructionNorRecursions(), is(Long.valueOf(1 + 3 + 6 + 10)));
 	}
 }

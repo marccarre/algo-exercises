@@ -1,5 +1,6 @@
 package com.carmatech.algo.collections;
 
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -80,6 +81,65 @@ public class BinomialTree<T extends Comparable<T>> {
 		} else {
 			allPaths.add(path);
 		}
+	}
+
+	public long pathLargestValueWithoutPathConstruction() {
+		return pathLargestValueWithoutPathConstruction(0, 0, toInt(tree[0]));
+	}
+
+	private long pathLargestValueWithoutPathConstruction(final int parent, final int depth, final long sum) {
+		final int leftChild = parent + depth + 1;
+		final int rightChild = parent + depth + 2;
+
+		if (!(leftChild < tree.length))
+			return sum;
+
+		final long leftSum = pathLargestValueWithoutPathConstruction(leftChild, depth + 1, sum + toInt(tree[leftChild]));
+		final long rightSum = pathLargestValueWithoutPathConstruction(rightChild, depth + 1, sum + toInt(tree[rightChild]));
+		return Math.max(leftSum, rightSum);
+	}
+
+	public long pathLargestValueWithoutPathConstructionNorRecursions() {
+		final Deque<Step> stack = new LinkedList<Step>();
+
+		long sum = Long.MIN_VALUE;
+		stack.push(new Step(0, 0, toLong(tree[0])));
+
+		while (!stack.isEmpty()) {
+			final Step step = stack.pop();
+
+			int depth = step.depth;
+			final int leftChild = step.index + depth + 1;
+			final int rightChild = step.index + depth + 2;
+
+			if (leftChild < tree.length) {
+				stack.push(new Step(leftChild, depth + 1, step.sum + toLong(tree[leftChild])));
+				stack.push(new Step(rightChild, depth + 1, step.sum + toLong(tree[rightChild])));
+			} else {
+				sum = Math.max(sum, step.sum);
+			}
+		}
+		return sum;
+	}
+
+	private static class Step {
+		private final int index;
+		private final int depth;
+		private final long sum;
+
+		private Step(final int index, final int depth, final long sum) {
+			this.index = index;
+			this.depth = depth;
+			this.sum = sum;
+		}
+	}
+
+	private int toInt(final T value) {
+		return Integer.parseInt(value.toString());
+	}
+
+	private long toLong(final T value) {
+		return Long.parseLong(value.toString());
 	}
 
 	private int[] copy(final int[] path) {
