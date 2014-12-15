@@ -1,5 +1,8 @@
 package com.carmatech.algo.bitwise;
 
+import static com.carmatech.algo.bitwise.BitwiseOperations.add;
+import static com.carmatech.algo.bitwise.BitwiseOperations.negate;
+import static com.carmatech.algo.bitwise.BitwiseOperations.subtract;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -94,6 +97,37 @@ public class BitwiseOperationsTest {
 
 		assertThat(BitwiseOperations.bitCountSwar(i), is(16));
 		assertThat(Integer.bitCount(i), is(16));
+	}
+
+	@Test
+	public void addIntegers() {
+		int x = 47;
+		int y = 53;
+		println(x);
+		println(y);
+		println(x+y);
+		println(add(x, y));
+		assertThat(add(x, y), is(100));
+	}
+
+	@Test
+	public void negateInteger() {
+		int x = 47;
+		println(x);
+		println(-x);
+		println(negate(x));
+		assertThat(negate(x), is(-47));
+	}
+
+	@Test
+	public void subtractIntegers() {
+		int x = 47;
+		int y = 53;
+		println(x);
+		println(y);
+		println(x-y);
+		println(subtract(x, y));
+		assertThat(subtract(y, x), is(6));
 	}
 
 	private void println(final long l) {
