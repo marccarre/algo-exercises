@@ -15,16 +15,15 @@ public final class Strings {
 	 *            String to check for duplicates.
 	 * @return true if the same character has been seen twice, false otherwise.
 	 */
-	public static boolean containsDuplicate(final String chars) {
-		final Set<String> seenChars = new HashSet<String>();
-		final int length = chars.length();
-
+	public static boolean containsDuplicate(final String string) {
+		final Set<Character> characters = new HashSet<Character>();
+		final int length = string.length();
 		for (int i = 0; i < length; ++i) {
-			final String currentChar = chars.substring(i, i + 1);
-			if (seenChars.contains(currentChar))
-				return true;
-			else
-				seenChars.add(currentChar);
+			final char currentChar = string.charAt(i);
+			if (characters.contains(currentChar)) {
+                return true;
+            }
+			characters.add(currentChar);
 		}
 		return false;
 	}
@@ -37,11 +36,9 @@ public final class Strings {
 	 * @return true if the same character has been seen twice, false otherwise.
 	 */
 	public static boolean containsDuplicateLessMemoryMoreTime(final String string) {
-		final int length = string.length();
-
-		for (int i = 0; i < length; ++i)
-			for (int j = i + 1; j < length; ++j)
-				if (string.substring(i, i + 1).equals(string.substring(j, j + 1)))
+        for (int i = 0; i < string.length(); ++i)
+			for (int j = i + 1; j < string.length(); ++j)
+				if (string.charAt(i) == string.charAt(j))
 					return true;
 		return false;
 	}
