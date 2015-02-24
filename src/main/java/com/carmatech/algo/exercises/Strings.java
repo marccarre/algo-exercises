@@ -9,7 +9,8 @@ public final class Strings {
 	}
 
 	/**
-	 * Time complexity O(n), n being the length of the provided string. Space complexity O(n), as we keep track of all visited {@code char}s.
+	 * Time complexity:  O(n), n being the length of the provided string.
+     * Space complexity: O(n), as we keep track of all visited {@code char}s.
 	 * 
 	 * @param string
 	 *            String to check for duplicates.
@@ -29,7 +30,8 @@ public final class Strings {
 	}
 
 	/**
-	 * Time complexity O(n^2), n being the length of the provided string. Space complexity O(1), as we just keep two pointers.
+	 * Time complexity:  O(n^2), n being the length of the provided string.
+     * Space complexity: O(1), as we just keep two pointers.
 	 * 
 	 * @param string
 	 *            String to check for duplicates.
@@ -44,23 +46,25 @@ public final class Strings {
 	}
 
 	/**
-	 * Time complexity O(n), n being the length of the provided string. Space complexity O(1), as we just keep two pointers. Trick: We use an integer to keep
-	 * track of the characters already seen. WARNING: Provided string MUST ONLY CONTAIN ASCII CHARACTERS.
+	 * Time complexity:  O(n), n being the length of the provided string.
+     * Space complexity: O(1), as we use an integer as a bit-set to keep track of the characters already seen.
+     *
+     * WARNING: Provided string MUST ONLY CONTAIN [a-z] CHARACTERS, as the bit-set has a capacity of 32 distinct characters.
 	 * 
 	 * @param string
 	 *            String to check for duplicates
 	 * @return true if the same character has been seen twice, false otherwise.
 	 */
-	public static boolean containsDuplicateBestButAsciiOnly(final String string) {
-		final int length = string.length();
-		int seenChars = 0;
-
-		for (int i = 0; i < length; ++i) {
-			final int currentChar = string.charAt(i);
-			final int bitPosition = (1 << currentChar); // 1 * 2^currentChar.
-			if ((seenChars & bitPosition) > 0)
-				return true;
-			seenChars |= bitPosition;
+	public static boolean containsDuplicateBestButOnlyLowerCasedAsciiLetters(final String string) {
+        int charactersBitSet = 0;
+		for (int i = 0; i < string.length(); ++i) {
+            // Current char - 'a' gives us a short int with a value between 0 and 26 (assuming contract is respected), which is less than 32.
+            // We then use this to find the position in the bit-set as: position == 1 << char == 1 * 2^char
+            final int position = 1 << (string.charAt(i) - 'a');
+			if ((charactersBitSet & position) > 0) {
+                return true;
+            }
+			charactersBitSet |= position;
 		}
 		return false;
 	}

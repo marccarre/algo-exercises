@@ -21,8 +21,8 @@ public class StringsTest {
 
 	@Test
 	public void javaShouldContainDuplicateCharsWhileSingleShouldNot_BestButAsciiOnly() {
-		assertThat(Strings.containsDuplicateBestButAsciiOnly("java"), is(true));
-		assertThat(Strings.containsDuplicateBestButAsciiOnly("single"), is(false));
+        assertThat(Strings.containsDuplicateBestButOnlyLowerCasedAsciiLetters("java"), is(true));
+		assertThat(Strings.containsDuplicateBestButOnlyLowerCasedAsciiLetters("single"), is(false));
 	}
 
 	@Test
