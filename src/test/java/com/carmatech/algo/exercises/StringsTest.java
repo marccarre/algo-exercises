@@ -35,4 +35,24 @@ public class StringsTest {
 		Strings.reverseCStyleString(evenString);
 		assertThat(evenString, equalTo(new char[] { 'a', 'v', 'a', 'j', '\0' }));
 	}
+
+    @Test
+    public void areAnagramsUsingSorting() {
+        assertThat(Strings.areAnagramsUsingSorting("algorithm", "logarithm"), is(true));
+        assertThat(Strings.areAnagramsUsingSorting("algorithm", "Logarithm"), is(false));
+        assertThat(Strings.areAnagramsUsingSorting("algorithm", "exponential"), is(false));
+        assertThat(Strings.areAnagramsUsingSorting("algorithm", "abcdefghi"), is(false));
+        assertThat(Strings.areAnagramsUsingSorting("algorithm", null), is(false));
+        assertThat(Strings.areAnagramsUsingSorting(null, "algorithm"), is(false));
+    }
+
+    @Test
+    public void areAnagramsUsingHashMap() {
+        assertThat(Strings.areAnagramsUsingHashMap("algorithm", "logarithm"), is(true));
+        assertThat(Strings.areAnagramsUsingHashMap("algorithm", "Logarithm"), is(false));
+        assertThat(Strings.areAnagramsUsingHashMap("algorithm", "exponential"), is(false));
+        assertThat(Strings.areAnagramsUsingHashMap("algorithm", "abcdefghi"), is(false));
+        assertThat(Strings.areAnagramsUsingHashMap("algorithm", null), is(false));
+        assertThat(Strings.areAnagramsUsingHashMap(null, "algorithm"), is(false));
+    }
 }

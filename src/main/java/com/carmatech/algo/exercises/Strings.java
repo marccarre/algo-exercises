@@ -1,6 +1,9 @@
 package com.carmatech.algo.exercises;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public final class Strings {
@@ -81,4 +84,41 @@ public final class Strings {
 		string[i] = string[j];
 		string[j] = temp;
 	}
+
+    /**
+     * Time complexity:  O(3n+2n.log(n)) = O(n.log(n))
+     * Space complexity: O(2n) = O(n)
+     */
+    public static boolean areAnagramsUsingSorting(final String s1, final String s2) {
+        if ((s1 == null) || (s1 == null) || (s1.length() != s2.length()))
+            return false;
+        final char[] a1 = s1.toCharArray();
+        final char[] a2 = s2.toCharArray();
+        Arrays.sort(a1);
+        Arrays.sort(a2);
+        return Arrays.equals(a1, a2);
+    }
+
+    /**
+     * Time complexity:  O(3n+6) = O(n)
+     * Space complexity: O(n)
+     */
+    public static boolean areAnagramsUsingHashMap(final String s1, final String s2) {
+        if ((s1 == null) || (s1 == null) || (s1.length() != s2.length()))
+            return false;
+        final Map<Character, Integer> occurrences = new HashMap<>();
+        countCharOccurrences(s1, occurrences);
+        countCharOccurrences(s2, occurrences);
+        for (final int count : occurrences.values())
+            if (count != 2)
+                return false;
+        return true;
+    }
+
+    private static void countCharOccurrences(final String string, final Map<Character, Integer> occurrences) {
+        for (int i = 0; i < string.length(); ++i) {
+            final char currentChar = string.charAt(i);
+            occurrences.put(currentChar, occurrences.containsKey(currentChar) ? occurrences.get(currentChar) + 1 : 1);
+        }
+    }
 }
