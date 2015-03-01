@@ -32,9 +32,11 @@ public class Integers {
             return NO_SOLUTION;
 
         Arrays.sort(array);
+
         int i = 0;
         int j = array.length - 1;
         int sum;
+
         while (i < j) {
             sum = array[i] + array[j];
             if (sum == target) return new int[] {i, j};
@@ -44,6 +46,75 @@ public class Integers {
         return NO_SOLUTION;
     }
 
+    /**
+     * Time complexity:  O((n+1).log(n)) = O(n.log(n))
+     * Space complexity: O(1)
+     * Potential bugs: Stationary points & non-convergence.
+     */
+    public static int[] findTwoIntegersSummingUpToTarget_SortingAndBinarySearch(final int target, final int[] array) {
+        if ((target == 0) || (array == null) || (array.length < 2))
+            return NO_SOLUTION;
+
+        Arrays.sort(array);
+
+        int i = 0;
+        int j = array.length - 1;
+        int prevI = -1;
+        int prevJ = -1;
+        int sum;
+        boolean wasGreater = false;
+        boolean wasSmaller = false;
+        boolean hasBacktracked = false;
+
+        while ((i < j) && (i != prevI || j != prevJ)) {
+            sum = array[i] + array[j];
+            if (sum == target)
+                return new int[] {i, j};
+
+            System.out.println("i=" + i + ", j=" + j + ", sum=" + sum + ", target=" + target );
+
+            if (sum < target) {
+                if (wasGreater && (prevJ != -1) && !hasBacktracked) {
+                    hasBacktracked = true;
+                    int currentJ = j;
+                    do {
+                        System.out.println("i=" + i + ", j=" + j + ", sum=" + (array[i] + array[j]) + ", prevJ=" + prevJ + " (before)");
+                        j = j + (prevJ - j) / 2;
+                        System.out.println("i=" + i + ", j=" + j + ", sum=" + (array[i] + array[j]) + ", prevJ=" + prevJ + " (after)");
+                    } while ((array[i] + array[j] < target) && (j != currentJ) && (j != prevJ));
+                } else {
+                    hasBacktracked = false;
+                    prevI = i;
+                    i = i + (j - i) / 2;
+                }
+                wasSmaller = true;
+                wasGreater = false;
+            }
+            if (sum > target) {
+                if (wasSmaller && (prevI != -1) && !hasBacktracked) {
+                    hasBacktracked = true;
+                    int currentI = i;
+                    do {
+                        System.out.println("i=" + i + ", j=" + j + ", sum=" + (array[i] + array[j]) + ", prevI=" + prevI + " (before)");
+                        i = prevI + (i - prevI) / 2;
+                        System.out.println("i=" + i + ", j=" + j + ", sum=" + (array[i] + array[j]) + ", prevI=" + prevI + " (after)");
+                    } while ((array[i] + array[j] > target) && (i != currentI) && (i != prevI));
+                } else {
+                    hasBacktracked = false;
+                    prevJ = j;
+                    j = i + (j - i) / 2;
+                }
+                wasSmaller = false;
+                wasGreater = true;
+            }
+        }
+        return NO_SOLUTION;
+    }
+
+    /**
+     * Time complexity:  O(n)
+     * Space complexity: O(n)
+     */
     public static int[] findTwoIntegersSummingUpToTarget_HashMap(final int target, final int[] array) {
         if ((target == 0) || (array == null) || (array.length < 2))
             return NO_SOLUTION;
