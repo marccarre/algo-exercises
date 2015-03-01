@@ -87,22 +87,16 @@ public final class Sorting {
 	}
 
 	private static <T extends Comparable<T>> void merge(final T[] tempArray, final T[] array, final int lo, final int mid, final int hi) {
-		// Copy array[lo..hi] to temp array:
-		for (int k = lo; k <= hi; k++)
-			tempArray[k] = array[k];
+        System.arraycopy(array, lo, tempArray, lo, hi - lo + 1);
 
 		// Merge two sub-arrays while keeping all elements sorted:
 		int i = lo;
 		int j = mid + 1;
 		for (int k = lo; k <= hi; k++) {
-			if (i > mid)
-				array[k] = tempArray[j++];
-			else if (j > hi)
-				array[k] = tempArray[i++];
-			else if (less(tempArray[j], tempArray[i]))
-				array[k] = tempArray[j++];
-			else
-				array[k] = tempArray[i++];
+			if (i > mid)                               array[k] = tempArray[j++];
+			else if (j > hi)                           array[k] = tempArray[i++];
+			else if (less(tempArray[j], tempArray[i])) array[k] = tempArray[j++];
+			else                                       array[k] = tempArray[i++];
 		}
 	}
 
