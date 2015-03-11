@@ -2,7 +2,7 @@ package com.carmatech.algo.collections;
 
 import java.util.EmptyStackException;
 
-public class Stack<T> {
+public class ListStack<T> {
     private Node<T> top = null;
 
     private class Node<T> {

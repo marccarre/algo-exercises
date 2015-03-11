@@ -9,10 +9,10 @@ import java.util.EmptyStackException;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-public class StackTest {
+public class ListStackTest {
     @Rule
     public final ExpectedException exception = ExpectedException.none();
-    private final Stack<Integer> stack = new Stack<>();
+    private final ListStack<Integer> stack = new ListStack<>();
 
     @Test
     public void stackIsEmptyByDefault(){
