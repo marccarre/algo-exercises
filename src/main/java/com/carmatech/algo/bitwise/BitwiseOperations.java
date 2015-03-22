@@ -14,6 +14,16 @@ public final class BitwiseOperations {
 		return numOfBitsSetToOne;
 	}
 
+    public static int bitCountSimple(int i) {
+        int count = 0;
+        while (i != 0) {
+            if ((0x00000001 & i) != 0)
+                ++count;
+            i >>>= 1;
+        }
+        return count;
+    }
+
 	public static int bitCountSwar(int i) {
 		i = i - ((i >> 1) & 0x55555555);
 		i = (i & 0x33333333) + ((i >> 2) & 0x33333333);

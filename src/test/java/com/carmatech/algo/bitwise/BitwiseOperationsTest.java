@@ -90,6 +90,15 @@ public class BitwiseOperationsTest {
 		assertThat(Integer.bitCount(i), is(16));
 	}
 
+    @Test
+    public void bitCountSimple() {
+        int i = 0xFFFF0000;
+        println(i);
+
+        assertThat(BitwiseOperations.bitCountSimple(i), is(16));
+        assertThat(Integer.bitCount(i), is(16));
+    }
+
 	@Test
 	public void bitCountUsingSwar() {
 		int i = 0xFFFF0000;
