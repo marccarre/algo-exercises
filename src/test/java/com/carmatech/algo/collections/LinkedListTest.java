@@ -130,4 +130,20 @@ public class LinkedListTest {
 		assertThat(list.toString(), is("[]"));
 		assertThat(list.isEmpty(), is(true));
 	}
+
+    @Test
+         public void removeDuplicatesLowMemory() {
+        LinkedList<String> list = new LinkedList<String>();
+        list.addAll(Arrays.asList("a", "a", null, "b", "a", "c", "b"));
+        list.removeDuplicatesLowMemory();
+        assertThat(list.toString(), is("[a, null, b, c]"));
+    }
+
+    @Test
+         public void removeDuplicates() {
+        LinkedList<String> list = new LinkedList<String>();
+        list.addAll(Arrays.asList("a", "a", null, "b", "a", "c", "b"));
+        list.removeDuplicates();
+        assertThat(list.toString(), is("[a, null, b, c]"));
+    }
 }

@@ -1,9 +1,11 @@
 package com.carmatech.algo.collections;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Set;
 
 public class LinkedList<T> implements List<T> {
 	private static class Node<T> implements Iterator<T> {
@@ -264,9 +266,25 @@ public class LinkedList<T> implements List<T> {
 		while (current.next != null) {
 			current = current.next;
 			b.append(", ");
-			b.append(current.value.toString());
+			b.append(current.value == null ? "null" : current.value.toString());
 		}
 		b.append("]");
 		return b.toString();
 	}
+
+    public void removeDuplicatesLowMemory() {
+        for (Node<T> i = head; i != null; i = i.next)
+            for (Node<T> j = i; j != null; j = j.next)
+                if ((j.next != null) && (i.value != null) && (i.value.equals(j.next.value)))
+                    j.next = j.next.next;
+    }
+
+    public void removeDuplicates() {
+        final Set<T> values = new HashSet<T>();
+        for (Node<T> i = head; i != null; i = i.next) {
+            values.add(i.value);
+            if ((i.next != null) && values.contains(i.next.value))
+                i.next = i.next.next;
+        }
+    }
 }
