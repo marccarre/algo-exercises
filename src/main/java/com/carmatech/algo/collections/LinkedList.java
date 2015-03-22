@@ -287,4 +287,28 @@ public class LinkedList<T> implements List<T> {
                 i.next = i.next.next;
         }
     }
+
+    public T getFromEnd(final int index) {
+        if (index <= 0)
+            return null;
+        Node<T> i = head;
+        Node<T> j = advance(head, index);
+        if (j == null)
+            return null;
+        for (;; i = i.next, j = j.next)
+            if (j.next == null)
+                return i.value;
+    }
+
+    private Node<T> advance(final Node<T> current, final int index) {
+        if (current == null)
+            return null;
+        Node<T> node = current;
+        for (int i = 0; i < index - 1; ++i) {
+            if (node == null)
+                break;
+            node = node.next;
+        }
+        return node;
+    }
 }

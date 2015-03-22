@@ -3,6 +3,7 @@ package com.carmatech.algo.collections;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 
 import java.util.Arrays;
 
@@ -132,7 +133,7 @@ public class LinkedListTest {
 	}
 
     @Test
-         public void removeDuplicatesLowMemory() {
+    public void removeDuplicatesLowMemory() {
         LinkedList<String> list = new LinkedList<String>();
         list.addAll(Arrays.asList("a", "a", null, "b", "a", "c", "b"));
         list.removeDuplicatesLowMemory();
@@ -140,10 +141,24 @@ public class LinkedListTest {
     }
 
     @Test
-         public void removeDuplicates() {
+    public void removeDuplicates() {
         LinkedList<String> list = new LinkedList<String>();
         list.addAll(Arrays.asList("a", "a", null, "b", "a", "c", "b"));
         list.removeDuplicates();
         assertThat(list.toString(), is("[a, null, b, c]"));
     }
+
+    @Test
+    public void getNthElementFromEnd() {
+        LinkedList<Integer> list = new LinkedList<Integer>();
+        list.addAll(Arrays.asList(1, 2, 3, 4, 5));
+        assertThat(list.getFromEnd(0), is(nullValue()));
+        assertThat(list.getFromEnd(1), is(5));
+        assertThat(list.getFromEnd(2), is(4));
+        assertThat(list.getFromEnd(3), is(3));
+        assertThat(list.getFromEnd(4), is(2));
+        assertThat(list.getFromEnd(5), is(1));
+        assertThat(list.getFromEnd(6), is(nullValue()));
+    }
+
 }
