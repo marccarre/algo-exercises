@@ -41,4 +41,27 @@ public class ArraysTest {
         };
         assertThat(Arrays.rotate90Degrees(image), is(rotated));
     }
+
+    @Test
+    public void spiralOfSize4() {
+        int[][] expected = new int[][] {
+                new int[] {1,  2,  3,  4},
+                new int[] {12, 13, 14, 5},
+                new int[] {11, 16, 15, 6},
+                new int[] {10, 9,  8,  7}
+        };
+        assertThat(Arrays.spiral(4), is(expected));
+    }
+
+    @Test
+    public void spiralOfSize5() {
+        int[][] expected = new int[][] {
+                new int[] {1,  2,  3,  4,  5},
+                new int[] {16, 17, 18, 19, 6},
+                new int[] {15, 24, 25, 20, 7},
+                new int[] {14, 23, 22, 21, 8},
+                new int[] {13, 12, 11, 10, 9}
+        };
+        assertThat(Arrays.spiral(5), is(expected));
+    }
 }
