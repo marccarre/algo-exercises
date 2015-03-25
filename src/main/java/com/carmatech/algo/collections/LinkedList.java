@@ -311,4 +311,30 @@ public class LinkedList<T> implements List<T> {
         }
         return node;
     }
+
+    public static LinkedList<Integer> sum(final LinkedList<Integer> list1, final LinkedList<Integer> list2) {
+        Node<Integer> a = list1.head;
+        Node<Integer> b = list2.head;
+        if (a == null) return list2;
+        if (b == null) return list1;
+
+        int carry = 0;
+        final Node<Integer> result = new Node<>(-1);
+        Node<Integer> digit = result;
+
+        while (a != null || b != null || carry != 0) {
+            int x = (a != null) ? a.value : 0;
+            int y = (b != null) ? b.value : 0;
+            int sum = x + y + carry;
+            carry = (sum >= 10) ? 1 : 0;
+            digit.next = new Node<Integer>(sum % 10);
+            digit = digit.next;
+            a = (a == null) ? null : a.next;
+            b = (b == null) ? null : b.next;
+        }
+
+        final LinkedList<Integer> list = new LinkedList<>();
+        list.head = result.next;
+        return list;
+    }
 }

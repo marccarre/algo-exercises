@@ -161,4 +161,13 @@ public class LinkedListTest {
         assertThat(list.getFromEnd(6), is(nullValue()));
     }
 
+    @Test
+    public void sumLinkedLists() {
+        LinkedList<Integer> a = new LinkedList<>();
+        a.addAll(Arrays.asList(1, 2, 3));
+        LinkedList<Integer> b = new LinkedList<>();
+        b.addAll(Arrays.asList(4, 9));
+
+        assertThat(LinkedList.sum(a, b).toString(), is("[5, 1, 4]"));
+    }
 }
