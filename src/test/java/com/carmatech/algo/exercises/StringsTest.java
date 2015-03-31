@@ -3,6 +3,7 @@ package com.carmatech.algo.exercises;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 
 import org.junit.Test;
 
@@ -33,7 +34,7 @@ public class StringsTest {
 
 		char[] evenString = new char[] { 'j', 'a', 'v', 'a', '\0' };
 		Strings.reverseCStyleString(evenString);
-		assertThat(evenString, equalTo(new char[] { 'a', 'v', 'a', 'j', '\0' }));
+		assertThat(evenString, equalTo(new char[]{'a', 'v', 'a', 'j', '\0'}));
 	}
 
     @Test
@@ -55,4 +56,30 @@ public class StringsTest {
         assertThat(Strings.areAnagramsUsingHashMap("algorithm", null), is(false));
         assertThat(Strings.areAnagramsUsingHashMap(null, "algorithm"), is(false));
     }
+
+	@Test
+	public void longestPalindromeBruteForce() {
+		assertThat(Strings.longestPalindromeBruteForce(null), is(nullValue()));
+		assertThat(Strings.longestPalindromeBruteForce(""), is(""));
+		assertThat(Strings.longestPalindromeBruteForce("a"), is("a"));
+		assertThat(Strings.longestPalindromeBruteForce("abcde"), is("a"));
+		assertThat(Strings.longestPalindromeBruteForce("cabbad"), is("abba"));
+		assertThat(Strings.longestPalindromeBruteForce("cbababd"), is("babab"));
+		assertThat(Strings.longestPalindromeBruteForce("ebabcacd"), is("bab"));
+		assertThat(Strings.longestPalindromeBruteForce("abcdedcba"), is("abcdedcba"));
+		assertThat(Strings.longestPalindromeBruteForce("abcdeedcba"), is("abcdeedcba"));
+	}
+
+	@Test
+	public void longestPalindromeExpandAroundCenter() {
+		assertThat(Strings.longestPalindromeExpandAroundCenter(null), is(nullValue()));
+		assertThat(Strings.longestPalindromeExpandAroundCenter(""), is(""));
+		assertThat(Strings.longestPalindromeExpandAroundCenter("a"), is("a"));
+		assertThat(Strings.longestPalindromeExpandAroundCenter("abcde"), is("a"));
+		assertThat(Strings.longestPalindromeExpandAroundCenter("cabbad"), is("abba"));
+		assertThat(Strings.longestPalindromeExpandAroundCenter("cbababd"), is("babab"));
+		assertThat(Strings.longestPalindromeExpandAroundCenter("ebabcacd"), is("bab"));
+		assertThat(Strings.longestPalindromeExpandAroundCenter("abcdedcba"), is("abcdedcba"));
+		assertThat(Strings.longestPalindromeExpandAroundCenter("abcdeedcba"), is("abcdeedcba"));
+	}
 }

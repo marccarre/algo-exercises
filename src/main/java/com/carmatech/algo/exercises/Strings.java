@@ -121,4 +121,69 @@ public final class Strings {
             occurrences.put(currentChar, occurrences.containsKey(currentChar) ? occurrences.get(currentChar) + 1 : 1);
         }
     }
+
+	public static String longestPalindromeBruteForce(final String s) {
+		if (s == null || s.length() <= 1)
+			return s;
+
+		int maxLength = 0;
+		int begin = 0;
+		int end = 0;
+
+		for (int i = 0; i < s.length(); ++i) {
+			for (int j = i + 1; j < s.length(); ++j) {
+				int length = j - i + 1;
+				if ((length > maxLength) && isPalindrome(s, i, j)) {
+					maxLength = length;
+					begin = i;
+					end = j;
+				}
+			}
+		}
+
+		return s.substring(begin, end + 1);
+	}
+
+	private static boolean isPalindrome(final String s, int i, int j) {
+		while (i < j) {
+			if (s.charAt(i) != s.charAt(j))
+				return false;
+			++i;
+			--j;
+		}
+		return true;
+	}
+
+	public static String longestPalindromeExpandAroundCenter(final String s) {
+		if (s == null || s.length() <= 1)
+			return s;
+		String longest = s.substring(0, 1);
+		String current;
+		for (int i = 0; i < s.length()-1; ++i) {
+			current = expandFromCenter(s, i, i);
+			if (current.length() > longest.length()) {
+				longest = current;
+				// System.out.println("Longest: " + longest + " (" + i + "," + i + ")");
+			}
+			current = expandFromCenter(s, i, i+1);
+			if (current.length() > longest.length()) {
+				longest = current;
+				// System.out.println("Longest: " + longest + " (" + i + "," + (i+1) + ")");
+			}
+		}
+		return longest;
+	}
+
+	private static String expandFromCenter(final String s, int i, int j) {
+		// System.out.println("B: i=" + i + ", j=" + j);
+		while ((i >= 0) && (j < s.length()) && (s.charAt(i) == s.charAt(j))) {
+			--i;
+			++j;
+		}
+
+		// System.out.println("E: i=" + i + ", j=" + j);
+		i++;
+		j--;
+		return (i > j) ? "" : s.substring(i, j+1);
+	}
 }
