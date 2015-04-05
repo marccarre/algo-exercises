@@ -33,4 +33,52 @@ public class Arrays {
         }
         return spiral;
     }
+
+    public static int lowerBoundarySearch(final int[] array, final int target) {
+        if (array == null || array.length == 0)
+            return -1;
+        int k = array.length / 2;
+        int lo = 0;
+        int hi = array.length - 1;
+        while (lo <= hi) {
+            if ((array[k] == target) && ((k == 0) || (array[k - 1] != target))) {
+                return k;
+            } else if (array[k] >= target){
+                hi = k - 1;
+                k = lo + (hi - lo) / 2;
+            } else /* (array[k] < target) */ {
+                lo = k + 1;
+                k = lo + (hi - lo) / 2;
+            }
+        }
+        return -1;
+    }
+
+    public static int upperBoundarySearch(final int[] array, final int target) {
+        if (array == null || array.length == 0)
+            return -1;
+        int k = array.length / 2;
+        int lo = 0;
+        int hi = array.length - 1;
+        while (lo <= hi) {
+            if ((array[k] == target) && ((k == array.length - 1) || (array[k + 1] != target)))
+                return k;
+            else if (array[k] <= target) {
+                lo = k + 1;
+                k = lo + (hi - lo) / 2;
+            } else /* (array[k] > target) */ {
+                hi = k - 1;
+                k = lo + (hi - lo) / 2;
+            }
+        }
+        return -1;
+    }
+
+    public static int count(final int[] array, final int target) {
+        int begin = lowerBoundarySearch(array, target);
+        if (begin == -1)
+            return 0;
+        int end = upperBoundarySearch(array, target);
+        return end - begin + 1;
+    }
 }

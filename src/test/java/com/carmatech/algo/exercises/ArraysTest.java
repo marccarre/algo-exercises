@@ -64,4 +64,9 @@ public class ArraysTest {
         };
         assertThat(Arrays.spiral(5), is(expected));
     }
+
+    @Test
+    public void countOccurrences() {
+        assertThat(Arrays.count(new int[] { 1, 1, 2, 2, 3, 3, 4, 4, 7, 7, 7, 7, 9, 10, 12, 100 }, 7), is(4));
+    }
 }
