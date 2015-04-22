@@ -1,9 +1,11 @@
 package com.carmatech.algo.graphs;
 
+import com.carmatech.algo.utilities.IVisitable;
+
 import java.util.List;
 import java.util.function.Function;
 
-public interface IWeightedGraph<T extends Edge> {
+public interface IWeightedGraph<T extends Edge> extends IVisitable<IWeightedGraph<T>> {
 	void addEdge(T edge);
 
 	List<T> neighbours(int vertice);
