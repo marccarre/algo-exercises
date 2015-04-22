@@ -1,6 +1,7 @@
 package com.carmatech.algo.graphs;
 
 import java.util.List;
+import java.util.function.Function;
 
 public interface IWeightedGraph<T extends Edge> {
 	void addEdge(T edge);
@@ -26,4 +27,6 @@ public interface IWeightedGraph<T extends Edge> {
 	boolean isCyclic();
 
 	boolean hasEdgeToSelf(int vertice);
+
+	<Out> Out visit(final Function<IWeightedGraph<T>, Out> visitor);
 }

@@ -3,23 +3,26 @@ package com.carmatech.algo.graphs;
 import com.google.common.base.Objects;
 
 public class Edge implements Comparable<Edge> {
-
-	private final int from;
-	private final int to;
+	private final int v;
+	private final int w;
 	private final double weight;
 
-	public Edge(final int from, final int to, final double weight) {
-		this.from = from;
-		this.to = to;
+	public Edge(final int v, final int w, final double weight) {
+		this.v = v;
+		this.w = w;
 		this.weight = weight;
 	}
 
 	public int either() {
-		return from;
+		return v;
 	}
 
-	public int other(final int v) {
-		return (v == from) ? to : from;
+	public int other() {
+		return w;
+	}
+
+	public int other(final int vertex) {
+		return (vertex == v) ? w : v;
 	}
 
 	public double weight() {
@@ -28,16 +31,12 @@ public class Edge implements Comparable<Edge> {
 
 	@Override
 	public int compareTo(final Edge that) {
-		if (this.weight < that.weight)
-			return -1;
-		if (this.weight > that.weight)
-			return 1;
-		return 0;
+		return Double.compare(this.weight, that.weight);
 	}
 
 	@Override
 	public String toString() {
-		return "(" + from + ") <---[" + weight + "]---> (" + to + ")";
+		return "(" + v + ") <---[" + weight + "]---> (" + w + ")";
 	}
 
 	@Override
@@ -49,11 +48,11 @@ public class Edge implements Comparable<Edge> {
 		if (!(object instanceof Edge))
 			return false;
 		final Edge that = (Edge) object;
-		return Objects.equal(this.from, that.from) && Objects.equal(this.to, that.to) && Objects.equal(this.weight, that.weight);
+		return Objects.equal(this.v, that.v) && Objects.equal(this.w, that.w) && Objects.equal(this.weight, that.weight);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hashCode(from, to, weight);
+		return Objects.hashCode(v, w, weight);
 	}
 }

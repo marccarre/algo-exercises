@@ -1,5 +1,8 @@
 package com.carmatech.algo.graphs;
 
+import java.util.Iterator;
+import java.util.function.Function;
+
 public class UndirectedWeightedGraph extends AbstractWeightedGraph<Edge> implements IWeightedGraph<Edge> {
 
 	public UndirectedWeightedGraph(final int numVertices) {
@@ -38,6 +41,11 @@ public class UndirectedWeightedGraph extends AbstractWeightedGraph<Edge> impleme
 		for (int v = 0; v < numVertices; ++v)
 			count += edgesToSelf(v);
 		return count / 2;
+	}
+
+	@Override
+	public <Out> Out visit(final Function<IWeightedGraph<Edge>, Out> visitor) {
+		return visitor.apply(this);
 	}
 
 	@Override
