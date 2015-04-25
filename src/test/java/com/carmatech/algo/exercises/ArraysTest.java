@@ -67,6 +67,20 @@ public class ArraysTest {
 
     @Test
     public void countOccurrences() {
-        assertThat(Arrays.count(new int[] { 1, 1, 2, 2, 3, 3, 4, 4, 7, 7, 7, 7, 9, 10, 12, 100 }, 7), is(4));
+        assertThat(Arrays.count(new int[]{1, 1, 2, 2, 3, 3, 4, 4, 7, 7, 7, 7, 9, 10, 12, 100}, 7), is(4));
+    }
+
+    @Test
+    public void binarySearch() {
+        assertThat(Arrays.binarySearch(6, new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }), is(5));
+
+        assertThat(Arrays.binarySearch(11, new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }), is(-1));
+        assertThat(Arrays.binarySearch(0, new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }), is(-1));
+        assertThat(Arrays.binarySearch(6, new Integer[] { 1, 2, 3, 4, 5, 7, 8, 9, 10 }), is(-1));
+
+        assertThat(Arrays.binarySearch(null, new Integer[] { 1, 2, 3, 4, 5, 7, 8, 9, 10 }), is(-1));
+        assertThat(Arrays.binarySearch(6, null), is(-1));
+        assertThat(Arrays.binarySearch(6, new Integer[0]), is(-1));
+        assertThat(Arrays.binarySearch(6, new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, null), is(-1));
     }
 }

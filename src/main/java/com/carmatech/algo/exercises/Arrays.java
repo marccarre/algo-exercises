@@ -1,6 +1,12 @@
 package com.carmatech.algo.exercises;
 
-public class Arrays {
+import java.util.Comparator;
+
+public final class Arrays {
+    private Arrays() {
+        // Pure utility class, do NOT instantiate.
+    }
+
     public static int[][] rotate90Degrees(final int[][] image) {
         final int n = image.length;
         final int numLayers = (image.length + 1) / 2;
@@ -80,5 +86,31 @@ public class Arrays {
             return 0;
         int end = upperBoundarySearch(array, target);
         return end - begin + 1;
+    }
+
+    private static final int NOT_FOUND = -1;
+
+    public static <T extends Comparable<T>> int binarySearch(final T target, final T[] array, final Comparator<T> comparator) {
+        if (array == null || array.length == 0 || target == null || comparator == null)
+            return NOT_FOUND;
+
+        int lo = 0;
+        int hi = array.length - 1;
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            int compare = comparator.compare(target, array[mid]);
+            if (compare == 0)
+                return mid;
+            else if (compare < 0)
+                hi = mid - 1;
+            else // (compare > 0)
+                lo = mid + 1;
+        }
+
+        return NOT_FOUND;
+    }
+
+    public static <T extends Comparable<T>> int binarySearch(final T target, final T[] array) {
+        return binarySearch(target, array, (first, second) -> first.compareTo(second));
     }
 }
