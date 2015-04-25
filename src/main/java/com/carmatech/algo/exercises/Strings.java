@@ -90,7 +90,7 @@ public final class Strings {
      * Space complexity: O(2n) = O(n)
      */
     public static boolean areAnagramsUsingSorting(final String s1, final String s2) {
-        if ((s1 == null) || (s1 == null) || (s1.length() != s2.length()))
+        if ((s1 == null) || (s2 == null) || (s1.length() != s2.length()))
             return false;
         final char[] a1 = s1.toCharArray();
         final char[] a2 = s2.toCharArray();
@@ -104,7 +104,7 @@ public final class Strings {
      * Space complexity: O(n)
      */
     public static boolean areAnagramsUsingHashMap(final String s1, final String s2) {
-        if ((s1 == null) || (s1 == null) || (s1.length() != s2.length()))
+        if ((s1 == null) || (s2 == null) || (s1.length() != s2.length()))
             return false;
         final Map<Character, Integer> occurrences = new HashMap<>();
         countCharOccurrences(s1, occurrences);
