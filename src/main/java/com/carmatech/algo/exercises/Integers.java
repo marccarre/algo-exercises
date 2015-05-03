@@ -140,4 +140,49 @@ public class Integers {
 
         return NO_SOLUTION;
     }
+
+    public static int parseInt(final String s) {
+        int integer = 0;
+        int decade = 1;
+        for (int i = s.length() - 1; i >= 0; --i) {
+            char c = s.charAt(i);
+            if (isDigit(c)) {
+                integer += toInt(c) * decade;
+                decade *= 10;
+            } else if (isNegativeSign(c, i)) {
+                integer *= -1;
+            } else {
+                throw new NumberFormatException("'" + s + "' is not a valid integer.");
+            }
+        }
+        return integer;
+    }
+
+    private static boolean isDigit(final char c) {
+        return (c >= '0') && (c <= '9');
+    }
+
+    private static boolean isNegativeSign(final char c, final int i) {
+        return (i == 0) && (c == '-');
+    }
+
+    private static int toInt(final char c) {
+        return c - '0';
+    }
+
+    public static String toString(int integer) {
+        if (integer == 0)
+            return "0";
+
+        final StringBuilder string = new StringBuilder();
+        final boolean isNegative = (integer < 0);
+        while (integer != 0) {
+            final int unit = integer % 10;
+            string.append(unit >= 0 ? unit : -unit);
+            integer /= 10;
+        }
+        if (isNegative)
+            string.append('-');
+        return string.reverse().toString();
+    }
 }
