@@ -1,5 +1,6 @@
-package com.carmatech.algo.collections;
+package com.carmatech.algo.collections.stacks;
 
+import com.carmatech.algo.collections.stacks.ArrayStack;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

@@ -1,4 +1,4 @@
-package com.carmatech.algo.collections;
+package com.carmatech.algo.collections.stacks;
 
 import java.util.EmptyStackException;
 
