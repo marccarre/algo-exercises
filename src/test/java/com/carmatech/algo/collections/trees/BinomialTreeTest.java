@@ -1,9 +1,10 @@
-package com.carmatech.algo.collections;
+package com.carmatech.algo.collections.trees;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
+import com.carmatech.algo.collections.trees.BinomialTree;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

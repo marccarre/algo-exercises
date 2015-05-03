@@ -1,4 +1,4 @@
-package com.carmatech.algo.collections;
+package com.carmatech.algo.collections.trees;
 
 import java.util.Deque;
 import java.util.LinkedList;
