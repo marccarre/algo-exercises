@@ -1,8 +1,9 @@
-package com.carmatech.algo.collections;
+package com.carmatech.algo.collections.heaps;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
+import com.carmatech.algo.collections.IPriorityQueue;
 import org.junit.Test;
 
 public class UnorderedMaxPQTest {

@@ -1,4 +1,6 @@
-package com.carmatech.algo.collections;
+package com.carmatech.algo.collections.heaps;
+
+import com.carmatech.algo.collections.IPriorityQueue;
 
 import static com.carmatech.algo.sorting.SortingUtilities.less;
 import static com.carmatech.algo.sorting.SortingUtilities.swap;
