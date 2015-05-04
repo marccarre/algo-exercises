@@ -1,6 +1,8 @@
 package com.carmatech.algo.exercises;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public final class Arrays {
     private Arrays() {
@@ -112,5 +114,42 @@ public final class Arrays {
 
     public static <T extends Comparable<T>> int binarySearch(final T target, final T[] array) {
         return binarySearch(target, array, (first, second) -> first.compareTo(second));
+    }
+
+    public static int[] intersection(final int[] a, final int[] b) {
+        if (a == null || a.length == 0 || b == null || b.length == 0) {
+            return new int[0];
+        }
+
+        final List<Integer> intersection = new ArrayList<>();
+        int i = 0;
+        int j = 0;
+        while ((i < a.length) && (j < b.length)) {
+            if (a[i] == b[j]) {
+                if (isFirstOccurrence(i, a)) {
+                    intersection.add(a[i]);
+                }
+                ++i;
+                ++j;
+            } else if (a[i] < b[j]) {
+                ++i;
+            } else if (a[i] > b[j]) {
+                ++j;
+            }
+        }
+        return toArray(intersection);
+    }
+
+    private static boolean isFirstOccurrence(final int i, final int[] array) {
+        return (i == 0) || (array[i] != array[i - 1]);
+    }
+
+    private static int[] toArray(final List<Integer> list) {
+        final int[] array = new int[list.size()];
+        int i = 0;
+        for (final int element : list) {
+            array[i++] = element;
+        }
+        return array;
     }
 }

@@ -81,6 +81,21 @@ public class ArraysTest {
         assertThat(Arrays.binarySearch(null, new Integer[] { 1, 2, 3, 4, 5, 7, 8, 9, 10 }), is(-1));
         assertThat(Arrays.binarySearch(6, null), is(-1));
         assertThat(Arrays.binarySearch(6, new Integer[0]), is(-1));
-        assertThat(Arrays.binarySearch(6, new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, null), is(-1));
+        assertThat(Arrays.binarySearch(6, new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, null), is(-1));
+    }
+
+    @Test
+    public void intersection() {
+        assertThat(
+            Arrays.intersection(
+                new int[] { 2, 3, 3, 5, 5, 6, 7, 7, 8, 12 },
+                new int[] { 5, 5, 6, 8, 8, 9, 10, 10 }),
+            is(new int[] { 5, 6, 8 }));
+
+        assertThat(
+            Arrays.intersection(
+                new int[] { 2, 3, 5, 7, 11 },
+                new int[] { 3, 7, 15, 31 }),
+            is(new int[] { 3, 7 }));
     }
 }
