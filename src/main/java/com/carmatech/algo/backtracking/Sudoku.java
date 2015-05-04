@@ -71,7 +71,7 @@ public class Sudoku {
     }
 
     private boolean isValid(final int x, final int y) {
-        return isValidRow(x) &&  isValidColumn(y) && isValidSquare(x, y);
+        return isValidRow(x) &&  isValidColumn(y) && isValidSquare(x - (x % SQUARE_SIZE), y - (y % SQUARE_SIZE));
     }
 
     private boolean isValidRow(final int x) {
@@ -99,12 +99,9 @@ public class Sudoku {
     }
 
     private boolean isValidSquare(final int x, final int y) {
-        final int row = x / SQUARE_SIZE;
-        final int column = y / SQUARE_SIZE;
-
         final Set<Integer> values = Sets.newHashSet();
-        for (int i = row * SQUARE_SIZE; i < (row + 1) * SQUARE_SIZE; ++i) {
-            for (int j = column * SQUARE_SIZE; j < (column + 1) * SQUARE_SIZE; ++j) {
+        for (int i = x; i < x + SQUARE_SIZE; ++i) {
+            for (int j = y; j < y + SQUARE_SIZE; ++j) {
                 final int value = grid[i][j];
                 if (values.contains(value))
                     return false;
@@ -127,8 +124,8 @@ public class Sudoku {
             if (!isValidColumn(y))
                 return false;
 
-        for (int x = 0; x < SQUARE_SIZE; x += 3)
-            for (int y = 0; y < SQUARE_SIZE; y += 3)
+        for (int x = 0; x < GRID_SIZE; x += 3)
+            for (int y = 0; y < GRID_SIZE; y += 3)
                 if (!isValidSquare(x, y))
                     return false;
 
