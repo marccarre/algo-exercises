@@ -152,4 +152,26 @@ public final class Arrays {
         }
         return array;
     }
+
+    /*
+     * O(n^2)
+     */
+    public static int maxSubArraySumBruteForce(final int[] array) {
+        if (array == null || array.length == 0)
+            return 0;
+
+        int max = Integer.MIN_VALUE;
+        for (int from = 0; from < array.length; ++from) {
+            int sum = array[from];
+            if (max < sum)
+                max = sum;
+            for (int to = from + 1; to < array.length; ++to) {
+                sum += array[to];
+                if (max < sum)
+                    max = sum;
+            }
+        }
+        return max;
+    }
+
 }

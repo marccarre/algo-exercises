@@ -88,14 +88,30 @@ public class ArraysTest {
     public void intersection() {
         assertThat(
             Arrays.intersection(
-                new int[] { 2, 3, 3, 5, 5, 6, 7, 7, 8, 12 },
-                new int[] { 5, 5, 6, 8, 8, 9, 10, 10 }),
+                    new int[]{2, 3, 3, 5, 5, 6, 7, 7, 8, 12},
+                    new int[]{5, 5, 6, 8, 8, 9, 10, 10}),
             is(new int[] { 5, 6, 8 }));
 
         assertThat(
             Arrays.intersection(
-                new int[] { 2, 3, 5, 7, 11 },
-                new int[] { 3, 7, 15, 31 }),
+                    new int[]{2, 3, 5, 7, 11},
+                    new int[]{3, 7, 15, 31}),
             is(new int[] { 3, 7 }));
+    }
+
+    @Test
+    public void maxSubArraySum() {
+        assertThat(Arrays.maxSubArraySumBruteForce(new int[]{904, 40, 523, 12, -355, -385, -124, 481, -31}), is(1479));
+        assertThat(Arrays.maxSubArraySumBruteForce(new int[]{-355, -385, 904, 40, 523, 12, -124, 481, -31}), is(1836));
+        assertThat(Arrays.maxSubArraySumBruteForce(new int[]{904, -1, -2, -3}), is(904));
+        assertThat(Arrays.maxSubArraySumBruteForce(new int[]{-1, 904, -2, -3}), is(904));
+        assertThat(Arrays.maxSubArraySumBruteForce(new int[]{-1, -2, -3, 904}), is(904));
+        assertThat(Arrays.maxSubArraySumBruteForce(new int[]{-1, 250, 250, -1}), is(500));
+        assertThat(Arrays.maxSubArraySumBruteForce(new int[]{-1, 250, -1, 250, -1}), is(499));
+        assertThat(Arrays.maxSubArraySumBruteForce(new int[]{-1, 250, -249, 250, -1}), is(251));
+        assertThat(Arrays.maxSubArraySumBruteForce(new int[]{-1, 250, -250, 250, -1}), is(250));
+        assertThat(Arrays.maxSubArraySumBruteForce(new int[]{-1, 250, 250, -2000, 250, 250, -1}), is(500));
+        assertThat(Arrays.maxSubArraySumBruteForce(null), is(0));
+        assertThat(Arrays.maxSubArraySumBruteForce(new int[0]), is(0));
     }
 }
