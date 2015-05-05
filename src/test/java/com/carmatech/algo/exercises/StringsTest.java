@@ -82,4 +82,14 @@ public class StringsTest {
 		assertThat(Strings.longestPalindromeExpandAroundCenter("abcdedcba"), is("abcdedcba"));
 		assertThat(Strings.longestPalindromeExpandAroundCenter("abcdeedcba"), is("abcdeedcba"));
 	}
+
+	@Test
+	public void reverseVowels() {
+		assertThat(Strings.reverseVowels(null), is(nullValue()));
+		assertThat(Strings.reverseVowels(""), is(""));
+		assertThat(Strings.reverseVowels("bcd"), is("bcd"));
+		assertThat(Strings.reverseVowels("aei"), is("iea"));
+		assertThat(Strings.reverseVowels("abeiae"), is("ebaiea"));
+		assertThat(Strings.reverseVowels("abc"), is("abc"));
+	}
 }

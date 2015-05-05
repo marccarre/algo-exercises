@@ -186,4 +186,27 @@ public final class Strings {
 		j--;
 		return (i > j) ? "" : s.substring(i, j+1);
 	}
+
+	public static String reverseVowels(final String string) {
+		if (string == null || string.isEmpty())
+			return string;
+
+		final char[] chars = string.toCharArray();
+		int lo = 0;
+		int hi = chars.length - 1;
+		while (lo < hi) {
+			if (!isVowel(chars[lo])) {
+				++lo;
+			} else if (!isVowel(chars[hi])) {
+				--hi;
+ 			} else {
+				swap(chars, lo++, hi--);
+			}
+		}
+		return new String(chars);
+	}
+
+	private static boolean isVowel(final char c) {
+		return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
+	}
 }
