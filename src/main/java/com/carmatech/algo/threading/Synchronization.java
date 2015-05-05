@@ -1,12 +1,14 @@
 package com.carmatech.algo.threading;
 
+import com.google.common.util.concurrent.Uninterruptibles;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Semaphore;
 
 public class Synchronization {
     public static List<Integer> sequence(final int max) {
-        final List<Integer> sequence = new ArrayList();
+        final List<Integer> sequence = new ArrayList<>();
         final Semaphore oddReady = new Semaphore(1);
         final Semaphore evenReady = new Semaphore(1);
 
@@ -45,6 +47,8 @@ public class Synchronization {
         }
         odd.start();
         even.start();
+        Uninterruptibles.joinUninterruptibly(odd);
+        Uninterruptibles.joinUninterruptibly(even);
         return sequence;
     }
 }
